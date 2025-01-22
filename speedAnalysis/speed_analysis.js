@@ -2,9 +2,11 @@ let testText = "The quick brown fox jumps over the lazy dog.";
 let startTime, endTime;
 
 function startTest() {
+    document.getElementById("userInput").readOnly = false;
+    document.getElementById("userInput").value = "";
+
 // Set the test text
 document.getElementById("inputText").value = testText;
-document.getElementById("userInput").value = "";
 // Reset results and timer
 document.getElementById("output").innerHTML = "";
 startTime = new Date().getTime();
@@ -17,10 +19,9 @@ button.onclick = endTest;
 
  function endTest() {
             endTime = new Date().getTime();
-
+            document.getElementById("inputText").value = "";
             // Disable user input
             document.getElementById("userInput").readOnly = true;
-
             // Calculate time elapsed and words per minute (WPM)
             var timeElapsed = (endTime - startTime) / 1000; // in seconds
             var userTypedText = document.getElementById("userInput").value;
@@ -39,6 +40,7 @@ button.onclick = endTest;
             // Display the results
             var outputDiv = document.getElementById("output");
             outputDiv.innerHTML = "<h2>Typing Test Results:</h2>" +
+                "<p>Total length: " + userTypedText.length + "</p>" +
                 "<p>Words Typed: " + typedWords + "</p>" +
                 "<p>Time Elapsed: " + timeElapsed.toFixed(2) + " seconds</p>" +
                 "<p>Words Per Minute (WPM): " + wpm + "</p>";
