@@ -100,3 +100,5 @@ function startGameTimer(timeLeft) {
         }
     }, 1000);
 }
+
+startbtn.addEventListener('click', startGame);
