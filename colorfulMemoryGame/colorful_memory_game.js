@@ -57,7 +57,8 @@ function handleCardClick(event) {
 }
 
 function checkMatch() {
-    const [card1, card2] = selectedCards;
+    const [card1, card2] = selectedCards;//This line uses array destructuring to assign the first two elements of the 'selectedCards' array to 'card1' and 'card2'. 
+    //These variables represent the two cards selected by the player for comparison.
     if (card1.dataset.color === card2.dataset.color) {
         card1.classList.add('matched');
         card2.classList.add('matched');
@@ -70,4 +71,17 @@ function checkMatch() {
         card2.style.backgroundColor = '#ddd';
     }
     selectedCards = [];
+}
+
+function startGame() {
+    let timeLeft = 30;
+    startbtn.disabled = true;
+    score = 0; // Reset score to zero
+    scoreElement.textContent = `Score: ${score}`;
+    startGameTimer(timeLeft);
+    cards = shuffle(colors.concat(colors));
+    selectedCards = [];
+    gameContainer.innerHTML = '';
+    generateCards();
+    gameContainer.addEventListener('click', handleCardClick);
 }
